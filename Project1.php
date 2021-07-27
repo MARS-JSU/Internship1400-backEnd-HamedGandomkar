@@ -1,7 +1,6 @@
 <?php
-$a = "3.5x-2x+3x";
 
-function polynominal($expression){
+function calculation($expression){
     $readyToEval = str_replace(['x'], [''], $expression);
     $result = eval("return $readyToEval;");
     if(is_numeric($result)){
@@ -10,6 +9,7 @@ function polynominal($expression){
     return "nothing";
 }
 
+echo calculation("2.3x-5.5x+10x");
 //Hamed Gandomkar
 //1400.05.05
 
