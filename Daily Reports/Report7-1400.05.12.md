@@ -10,6 +10,7 @@
 
 ## فعالیت‌ها
 * درک تفاوت کلمات کلیدی static و self
+    * example: self::$property   VS   static::$property
 * تفاوت abstract class و interface
 * مشاهده ویدیو آموزشی
  
