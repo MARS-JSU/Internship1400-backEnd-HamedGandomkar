@@ -1,4 +1,22 @@
 <?php
+
+class Expression{
+    private $number;
+    private $power;
+    public function __construct($expression){
+        $this->number = floatval($expression);
+        $this->power = str_replace($this->number, "", $expression);
+    }
+    
+    public function getNumberPart(){
+        return $this->number;
+    }
+    
+    public function getPowerPart(){
+        return $this->power;
+    }
+}
+
 class PolyNominal{
     private $expression;
     public function __construct($expression)
