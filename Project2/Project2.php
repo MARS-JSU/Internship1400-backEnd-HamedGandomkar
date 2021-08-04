@@ -1,21 +1,40 @@
 <?php
 
-class Expression{
+class Expression
+{
+    private $expression;
     private $number;
     private $power;
-    public function __construct($expression){
+    public function __construct($expression)
+    {
+        $this->expression = $expression;
         $this->number = floatval($expression);
-        $this->power = str_replace($this->number, "", $expression);
+        $this->power = substr($expression, $this->getOffset()+1);
+        
+    }
+    
+    private function getOffset()
+    {
+        $offset = 0;
+        for($i=0; $i<4; $i++)
+        {
+            if(is_numeric($this->expression[$i]))
+            {
+                $offset = $i;
+            }
+        }
+        return $offset;
     }
     
     public function getNumberPart(){
         return $this->number;
     }
-    
-    public function getPowerPart(){
+    public function getPowerPart()
+    {
         return $this->power;
     }
 }
+
 
 class PolyNominal{
     private $expression;
