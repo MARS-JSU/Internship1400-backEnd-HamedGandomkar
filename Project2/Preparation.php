@@ -50,7 +50,7 @@ class Preparation
     {
         foreach($this->arrayOfExpressions as &$mono)
         {
-            if(strpos($mono, 'x') === false and $mono != '+'){
+            if(strpos($mono, 'x') === false){
                 $mono = $mono."x^0";
             }
             elseif (strpos($mono, 'x^') === false){
