@@ -33,11 +33,8 @@ class Preparation
         }
     }
 
-    private function insertRemovedChar()
-    {       
-        if(isset($this->firstChar)){
-            $this->arrayOfMonos[0] = $this->firstChar.$this->arrayOfMonos[0];
-        }
+    private function insertRemovedChar(){       
+        $this->arrayOfMonos[0] = $this->firstChar.$this->arrayOfMonos[0];
     }
 
     private function seperation()
@@ -61,7 +58,7 @@ class Preparation
 
     public function getarrayOfMonos()
     {
-        return $this->arrayOfMonos ?? new Exception("uninitiated instance!");
+        return $this->arrayOfMonos ?? new Exception("Uninitiated instance!");
     }
 }
 
