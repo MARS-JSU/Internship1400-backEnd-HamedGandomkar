@@ -17,7 +17,7 @@ class Preparation
         $this->insertRemovedChar();
     }
 
-    public function handleFirstChar()
+    private function handleFirstChar()
     {
         if($this->wholeExpression[0] == '-'){
             $this->firstChar = '-';
@@ -33,20 +33,20 @@ class Preparation
         }
     }
 
-    public function insertRemovedChar()
+    private function insertRemovedChar()
     {       
         if(isset($this->firstChar)){
             $this->arrayOfExpressions[0] = $this->firstChar.$this->arrayOfExpressions[0];
         }
     }
 
-    public function seperation()
+    private function seperation()
     {
         $temp = str_replace(['+', '-'], [' +', ' -'], $this->wholeExpression);
         $this->arrayOfExpressions = explode(' ', $temp);  
     }
 
-    public function prepare()
+    private function prepare()
     {
         foreach($this->arrayOfExpressions as &$mono)
         {
