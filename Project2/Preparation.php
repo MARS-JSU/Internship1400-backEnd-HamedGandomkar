@@ -3,7 +3,7 @@
 class Preparation
 {
     private string $wholeExpression;
-    private array $arrayOfExpressions;
+    private array $arrayOfMonos;
     private $firstChar;
     public function __construct($expression)
     {
@@ -36,19 +36,19 @@ class Preparation
     private function insertRemovedChar()
     {       
         if(isset($this->firstChar)){
-            $this->arrayOfExpressions[0] = $this->firstChar.$this->arrayOfExpressions[0];
+            $this->arrayOfMonos[0] = $this->firstChar.$this->arrayOfMonos[0];
         }
     }
 
     private function seperation()
     {
         $temp = str_replace(['+', '-'], [' +', ' -'], $this->wholeExpression);
-        $this->arrayOfExpressions = explode(' ', $temp);  
+        $this->arrayOfMonos = explode(' ', $temp);  
     }
 
     private function prepare()
     {
-        foreach($this->arrayOfExpressions as &$mono)
+        foreach($this->arrayOfMonos as &$mono)
         {
             if(strpos($mono, 'x') === false){
                 $mono = $mono."x^0";
@@ -59,12 +59,12 @@ class Preparation
         }
     }
 
-    public function getArrayOfExpressions()
+    public function getarrayOfMonos()
     {
-        return $this->arrayOfExpressions ?? new Exception("uninitiated instance!");
+        return $this->arrayOfMonos ?? new Exception("uninitiated instance!");
     }
 }
 
 $some = new Preparation("-3x^4-3.5x+3-4.5x^20+4.2x^10+243+234");
 $some->init();
-var_dump($some->getArrayOfExpressions());
+var_dump($some->getarrayOfMonos());
