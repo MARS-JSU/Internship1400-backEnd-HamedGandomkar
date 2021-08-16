@@ -7,18 +7,18 @@ use App\Utils\Poly;
 
 class Operation
 {
-    private Poly $Poly;
+    private Poly $poly;
 
     public function __construct(Poly $categor)
     {
-        $this->Poly = $categor;
+        $this->poly = $categor;
     }
 
 
     public function calculateByX($xVariable): float
     {
         $sum = 0;
-        foreach ($this->Poly->categorize() as &$mono) {
+        foreach ($this->poly->categorize() as &$mono) {
             $sum += $mono->getCoffecent() * ($xVariable ** $mono->getPower());
         }
         return $sum;
@@ -27,7 +27,7 @@ class Operation
     public function toString(): string
     {
         $outputString = "";
-        foreach ($this->Poly->categorize() as &$mono) {
+        foreach ($this->poly->categorize() as &$mono) {
             $outputString .= $mono->display();
         }
         return $outputString;
@@ -35,32 +35,32 @@ class Operation
 
     public function addition(Poly $secondArg): self
     {
-        $this->Poly->append($secondArg)->categorize();
+        $this->poly->append($secondArg)->categorize();
         return $this;
     }
 
     public function subtraction(Poly $secondArg): self
     {
-        $this->Poly->append($secondArg->negetivePoly())->categorize();
+        $this->poly->append($secondArg->negetivePoly())->categorize();
         return $this;
     }
 
     public function multiplication(Poly $secondArg): self
     {
-        $this->Poly->multiplication($secondArg);
-        $this->Poly->categorize();
+        $this->poly->multiplication($secondArg);
+        $this->poly->categorize();
         return $this;
     }
 
     public function derivative(): self
     {
-        $this->Poly->derivativePoly();
+        $this->poly->derivativePoly();
         return $this;
     }
 
     public function reset(): self
     {
-        $this->Poly->reset();
+        $this->poly->reset();
         return $this;
     }
 }
