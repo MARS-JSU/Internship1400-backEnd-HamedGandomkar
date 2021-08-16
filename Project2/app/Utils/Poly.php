@@ -3,7 +3,7 @@
 namespace App\Utils;
 
 
-class Categorization
+class Poly
 {
     private array $monos;
     private array $categorizedMonos;
@@ -78,10 +78,10 @@ class Categorization
         $this->categorizedMonos = $newCategorized;
     }
 
-    public function multiplication(self $anotherCategorization)
+    public function multiplication(self $anotherPoly)
     {
         $firstPoly = $this->categorize();
-        $secondPoly = $anotherCategorization->categorize();
+        $secondPoly = $anotherPoly->categorize();
         $resultPoly = [];
         foreach ($firstPoly as &$aMono) {
             foreach ($secondPoly as &$bMono) {

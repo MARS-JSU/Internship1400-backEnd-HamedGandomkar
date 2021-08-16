@@ -2,23 +2,23 @@
 
 namespace App;
 
-use App\Utils\Categorization;
+use App\Utils\Poly;
 
 
 class Operation
 {
-    private Categorization $categorization;
+    private Poly $Poly;
 
-    public function __construct(Categorization $categor)
+    public function __construct(Poly $categor)
     {
-        $this->categorization = $categor;
+        $this->Poly = $categor;
     }
 
 
     public function calculateByX($xVariable)
     {
         $sum = 0;
-        foreach ($this->categorization->categorize() as &$mono) {
+        foreach ($this->Poly->categorize() as &$mono) {
             $sum += $mono->getCoffecent() * ($xVariable ** $mono->getPower());
         }
         return $sum;
@@ -27,40 +27,40 @@ class Operation
     public function toString()
     {
         $outputString = "";
-        foreach ($this->categorization->categorize() as &$mono) {
+        foreach ($this->Poly->categorize() as &$mono) {
             $outputString .= $mono->display();
         }
         return $outputString;
     }
 
-    public function addition(Categorization $secondArg)
+    public function addition(Poly $secondArg)
     {
-        $this->categorization->append($secondArg)->categorize();
+        $this->Poly->append($secondArg)->categorize();
         return $this;
     }
 
-    public function subtraction(Categorization $secondArg)
+    public function subtraction(Poly $secondArg)
     {
-        $this->categorization->append($secondArg->negetivePoly())->categorize();
+        $this->Poly->append($secondArg->negetivePoly())->categorize();
         return $this;
     }
 
-    public function multiplication(Categorization $secondArg)
+    public function multiplication(Poly $secondArg)
     {
-        $this->categorization->multiplication($secondArg);
-        $this->categorization->categorize();
+        $this->Poly->multiplication($secondArg);
+        $this->Poly->categorize();
         return $this;
     }
 
     public function derivative()
     {
-        $this->categorization->derivativePoly();
+        $this->Poly->derivativePoly();
         return $this;
     }
 
     public function reset()
     {
-        $this->categorization->reset();
+        $this->Poly->reset();
         return $this;
     }
 }
