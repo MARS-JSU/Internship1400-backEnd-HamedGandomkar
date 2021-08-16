@@ -8,7 +8,7 @@ class Preparation
     private array $arrayOfExpressions;
     private string $firstChar;
 
-    public function __construct($expression)
+    public function __construct(string $expression)
     {
         $this->wholeExpression = $expression;
     }
