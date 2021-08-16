@@ -15,7 +15,7 @@ class Operation
     }
 
 
-    public function calculateByX($xVariable)
+    public function calculateByX($xVariable): float
     {
         $sum = 0;
         foreach ($this->Poly->categorize() as &$mono) {
@@ -24,7 +24,7 @@ class Operation
         return $sum;
     }
 
-    public function toString()
+    public function toString(): string
     {
         $outputString = "";
         foreach ($this->Poly->categorize() as &$mono) {
@@ -33,32 +33,32 @@ class Operation
         return $outputString;
     }
 
-    public function addition(Poly $secondArg)
+    public function addition(Poly $secondArg): self
     {
         $this->Poly->append($secondArg)->categorize();
         return $this;
     }
 
-    public function subtraction(Poly $secondArg)
+    public function subtraction(Poly $secondArg): self
     {
         $this->Poly->append($secondArg->negetivePoly())->categorize();
         return $this;
     }
 
-    public function multiplication(Poly $secondArg)
+    public function multiplication(Poly $secondArg): self
     {
         $this->Poly->multiplication($secondArg);
         $this->Poly->categorize();
         return $this;
     }
 
-    public function derivative()
+    public function derivative(): self
     {
         $this->Poly->derivativePoly();
         return $this;
     }
 
-    public function reset()
+    public function reset(): self
     {
         $this->Poly->reset();
         return $this;

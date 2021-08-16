@@ -16,7 +16,7 @@ class Poly
         $this->packToMono();
     }
 
-    public function categorize()
+    public function categorize(): array
     {
         $this->simplify();
         $this->sortByPowers();
@@ -91,7 +91,7 @@ class Poly
         $this->categorizedMonos = $resultPoly;
     }
 
-    public function append(self $categorationB)
+    public function append(self $categorationB): self
     {
         $this->categorizedMonos = array_merge(
             $this->categorizedMonos,
@@ -100,7 +100,7 @@ class Poly
         return $this;
     }
 
-    public function negetivePoly()
+    public function negetivePoly(): self
     {
         foreach ($this->categorizedMonos as &$mono) {
             $mono->negetive();
