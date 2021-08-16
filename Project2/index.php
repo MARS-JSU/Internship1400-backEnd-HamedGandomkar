@@ -19,3 +19,5 @@ echo "\n";
 echo $operate->reset()->addition($categorized)->toString();
 echo "\n";
 echo $operate->reset()->subtraction($categorized)->toString();
+
+
