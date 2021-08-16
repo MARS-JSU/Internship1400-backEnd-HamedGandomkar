@@ -6,7 +6,7 @@ class Preparation
 {
     private string $wholeExpression;
     private array $arrayOfExpressions;
-    private $firstChar;
+    private string $firstChar;
 
     public function __construct($expression)
     {
