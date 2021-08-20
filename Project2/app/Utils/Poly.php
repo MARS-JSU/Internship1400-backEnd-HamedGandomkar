@@ -20,7 +20,7 @@ class Poly
         $this->sortByPowers();
     }
 
-    public function setMonos(array $arrayOfMonos)
+    public function setMonos(array $arrayOfMonos): self
     {
         $this->categorizedMonos = $arrayOfMonos;
         return $this;

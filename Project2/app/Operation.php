@@ -44,25 +44,21 @@ class Operation
 
     public static function multiplication(Poly $firstPoly, Poly $secondPoly): Poly
     {
-        $monos = [];
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
             foreach($secondPoly->getMonos() as &$bMono){
-                $monos[] = $aMono->multiplication($bMono);
+                $outputPoly->addMono($aMono->multiplication($bMono));
             }
         }
-        $outputPoly->setMonos($monos)->categorize();
         return $outputPoly;
     }
 
     public static function derivative(Poly $poly): Poly
     {
-        $monos = [];
         $outputPoly = new Poly();
         foreach($poly->getMonos() as $mono){
-            $monos[] = $mono->derivative();
+            $outputPoly->addMono($mono->derivative());
         }
-        $outputPoly->setMonos($monos)->categorize();
         return $outputPoly;
     }
 

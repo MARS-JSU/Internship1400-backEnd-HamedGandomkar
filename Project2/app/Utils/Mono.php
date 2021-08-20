@@ -40,17 +40,17 @@ class Mono
         return "";
     }
 
-    public function getPower()
+    public function getPower(): int
     {
         return $this->power;
     }
 
-    public function getCoffecent()
+    public function getCoffecent(): float
     {
         return $this->coffecent;
     }
 
-    public function negative()
+    public function negative(): self
     {
         return new Mono(
             $this->coffecent * -1,
@@ -58,7 +58,7 @@ class Mono
         );
     }
 
-    public function derivative()
+    public function derivative(): self
     {
         return new Mono(
             $this->coffecent * $this->power,
@@ -66,7 +66,7 @@ class Mono
         );
     }
 
-    public function multiplication(self $secondMono)
+    public function multiplication(self $secondMono): self
     {
         return new Mono(
             $this->getCoffecent() * $secondMono->getCoffecent(),
