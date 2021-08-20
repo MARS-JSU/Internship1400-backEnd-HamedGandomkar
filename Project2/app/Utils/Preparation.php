@@ -6,6 +6,7 @@ class Preparation
 {
     private string $wholeExpression;
     private array $arrayOfExpressions;
+    private array $arrayOfMonos;
     private string $firstChar;
 
     public function __construct(string $expression)
@@ -21,7 +22,7 @@ class Preparation
         $this->prepare();
         $this->insertRemovedChar();
         $this->packToMono();
-        return $this->arrayOfExpressions ?? new \Exception("uninitiated instance!");
+        return $this->arrayOfMonos ?? new \Exception("uninitiated instance!");
     }
 
     private function handleFirstChar()
@@ -75,6 +76,6 @@ class Preparation
             $temp[1] = (float)$temp[1];
             $generatedMonos[] = new Mono($temp[0], $temp[1]);
         }
-        $this->arrayOfExpressions = $generatedMonos;
+        $this->arrayOfMonos = $generatedMonos;
     }
 }
