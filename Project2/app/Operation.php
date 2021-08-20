@@ -7,60 +7,63 @@ use App\Utils\Poly;
 
 class Operation
 {
-    private Poly $poly;
-
-    public function __construct(Poly $categor)
-    {
-        $this->poly = $categor;
-    }
-
-
-    public function calculateByX($xVariable): float
+    public static function calculateByX(Poly $poly, $xVariable): float
     {
         $sum = 0;
-        foreach ($this->poly->categorize() as &$mono) {
+        foreach ($poly->getMonos() as &$mono) {
             $sum += $mono->getCoffecent() * ($xVariable ** $mono->getPower());
         }
         return $sum;
     }
 
-    public function toString(): string
+    public static function addition(Poly $firstPoly, Poly $secondPoly): Poly
     {
-        $outputString = "";
-        foreach ($this->poly->categorize() as &$mono) {
-            $outputString .= $mono->display();
+        $outputPoly = new Poly();
+        foreach($firstPoly->getMonos() as &$aMono){
+            $outputPoly->addMono($aMono);
         }
-        return $outputString;
+        foreach($secondPoly->getMonos() as &$bMono){
+            $outputPoly->addMono($bMono);
+        }
+        $outputPoly->categorize();
+        return $outputPoly;
     }
 
-    public function addition(Poly $secondArg): self
+    public static function subtraction(Poly $firstPoly, Poly $secondPoly): Poly
     {
-        $this->poly->append($secondArg)->categorize();
-        return $this;
+        $outputPoly = new Poly();
+        foreach($firstPoly->getMonos() as &$aMono){
+            $outputPoly->addMono($aMono);
+        }
+        foreach($secondPoly->getMonos() as &$bMono){
+            $outputPoly->addMono($bMono->negative());
+        }
+        $outputPoly->categorize();
+        return $outputPoly;
     }
 
-    public function subtraction(Poly $secondArg): self
+    public static function multiplication(Poly $firstPoly, Poly $secondPoly): Poly
     {
-        $this->poly->append($secondArg->negetivePoly())->categorize();
-        return $this;
+        $monos = [];
+        $outputPoly = new Poly();
+        foreach($firstPoly->getMonos() as &$aMono){
+            foreach($secondPoly->getMonos() as &$bMono){
+                $monos[] = $aMono->multiplication($bMono);
+            }
+        }
+        $outputPoly->setMonos($monos)->categorize();
+        return $outputPoly;
     }
 
-    public function multiplication(Poly $secondArg): self
+    public static function derivative(Poly $poly): Poly
     {
-        $this->poly->multiplication($secondArg);
-        $this->poly->categorize();
-        return $this;
+        $monos = [];
+        $outputPoly = new Poly();
+        foreach($poly->getMonos() as $mono){
+            $monos[] = $mono->derivative();
+        }
+        $outputPoly->setMonos($monos)->categorize();
+        return $outputPoly;
     }
 
-    public function derivative(): self
-    {
-        $this->poly->derivativePoly();
-        return $this;
-    }
-
-    public function reset(): self
-    {
-        $this->poly->reset();
-        return $this;
-    }
 }

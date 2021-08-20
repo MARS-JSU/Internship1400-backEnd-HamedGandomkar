@@ -5,38 +5,30 @@ namespace App\Utils;
 
 class Poly
 {
-    private array $monos;
     private array $categorizedMonos;
-    private array $backupCategorizedMonos;
     private array $arrayOfPowers;
 
-    public function __construct(Preparation $expression)
+    public function __construct(array $expression = [])
     {
-        $this->monos = $expression->init();
-        $this->packToMono();
+        $this->categorizedMonos = $expression;
+        $this->categorize();
     }
 
-    public function categorize(): array
+    public function categorize()
     {
         $this->simplify();
         $this->sortByPowers();
+    }
+
+    public function setMonos(array $arrayOfMonos)
+    {
+        $this->categorizedMonos = $arrayOfMonos;
+        return $this;
+    }
+
+    public function getMonos(): array
+    {
         return $this->categorizedMonos;
-    }
-
-    public function reset()
-    {
-        $this->categorizedMonos = $this->backupCategorizedMonos;
-    }
-
-    private function packToMono()
-    {
-        foreach ($this->monos as &$mono) {
-            $temp = explode('x^', $mono);
-            $temp[0] = (float)$temp[0];
-            $temp[1] = (float)$temp[1];
-            $this->categorizedMonos[] = new Mono($temp[0], $temp[1]);
-            $this->backupCategorizedMonos[] = new Mono($temp[0], $temp[1]);
-        }
     }
 
     private function uniqePowers()
@@ -78,40 +70,19 @@ class Poly
         $this->categorizedMonos = $newCategorized;
     }
 
-    public function multiplication(self $anotherPoly)
+    public function toString(): string
     {
-        $firstPoly = $this->categorize();
-        $secondPoly = $anotherPoly->categorize();
-        $resultPoly = [];
-        foreach ($firstPoly as &$aMono) {
-            foreach ($secondPoly as &$bMono) {
-                $resultPoly[] = $aMono->multiplication($bMono);
-            }
+        $outputString = "";
+        $this->categorize();
+        foreach($this->categorizedMonos as &$mono){
+            $outputString .= $mono;
         }
-        $this->categorizedMonos = $resultPoly;
+        return $outputString;
     }
 
-    public function append(self $categorationB): self
+    public function addMono(Mono $mono)
     {
-        $this->categorizedMonos = array_merge(
-            $this->categorizedMonos,
-            $categorationB->categorize()
-        );
-        return $this;
+        array_push($this->categorizedMonos, $mono);
     }
 
-    public function negetivePoly(): self
-    {
-        foreach ($this->categorizedMonos as &$mono) {
-            $mono->negetive();
-        }
-        return $this;
-    }
-
-    public function derivativePoly()
-    {
-        foreach ($this->categorizedMonos as &$mono) {
-            $mono->derivative();
-        }
-    }
 }

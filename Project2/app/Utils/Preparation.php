@@ -20,6 +20,7 @@ class Preparation
         $this->seperation();
         $this->prepare();
         $this->insertRemovedChar();
+        $this->packToMono();
         return $this->arrayOfExpressions ?? new \Exception("uninitiated instance!");
     }
 
@@ -63,5 +64,17 @@ class Preparation
                 $mono = $mono . "^1";
             }
         }
+    }
+
+    private function packToMono()
+    {
+        $generatedMonos = [];
+        foreach ($this->arrayOfExpressions as &$mono) {
+            $temp = explode('x^', $mono);
+            $temp[0] = (float)$temp[0];
+            $temp[1] = (float)$temp[1];
+            $generatedMonos[] = new Mono($temp[0], $temp[1]);
+        }
+        $this->arrayOfExpressions = $generatedMonos;
     }
 }

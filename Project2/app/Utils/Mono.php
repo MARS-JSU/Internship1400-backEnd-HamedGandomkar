@@ -14,14 +14,14 @@ class Mono
         $this->power = $power;
     }
 
-    public function display()
+    public function __toString()
     {
         if ($this->power != -1) {
             if ($this->power == 1) {
                 if ($this->coffecent > 0) {
-                    return "+$this->coffecent" . "x^";
+                    return "+$this->coffecent" . "x";
                 } else {
-                    return "$this->coffecent" . "x^";
+                    return "$this->coffecent" . "x";
                 }
             } elseif ($this->power == 0) {
                 if ($this->coffecent > 0) {
@@ -37,6 +37,7 @@ class Mono
                 }
             }
         }
+        return "";
     }
 
     public function getPower()
@@ -49,15 +50,20 @@ class Mono
         return $this->coffecent;
     }
 
-    public function negetive()
+    public function negative()
     {
-        $this->coffecent *= -1;
+        return new Mono(
+            $this->coffecent * -1,
+            $this->power
+        );
     }
 
     public function derivative()
     {
-        $this->coffecent *= $this->power;
-        $this->power -= 1;
+        return new Mono(
+            $this->coffecent * $this->power,
+            $this->power - 1
+        );
     }
 
     public function multiplication(self $secondMono)

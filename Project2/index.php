@@ -6,16 +6,19 @@ use App\Operation;
 use App\Utils\Poly;
 use App\Utils\Preparation;
 
-$prepare = new Preparation("2x^2");
-$prepare2 = new Preparation("3x^3+4x+2");
-$categorized = new Poly($prepare);
-$categorized2 = new Poly($prepare2);
+$prep1 = new Preparation("10x^2+3x+4");
+$prep2 = new Preparation("2x^2+6x+6");
+$poly1 = new Poly($prep1->init());
+$poly2 = new Poly($prep2->init());
 
-$operate = new Operation($categorized2);
-echo $operate->multiplication($categorized)->toString();
+echo Operation::derivative($poly1)->toString();
 echo "\n";
-echo $operate->reset()->derivative()->toString();
+echo Operation::addition($poly1, $poly2)->toString();
 echo "\n";
-echo $operate->reset()->addition($categorized)->toString();
+echo Operation::subtraction($poly1, $poly2)->toString();
 echo "\n";
-echo $operate->reset()->subtraction($categorized)->toString();
+echo Operation::multiplication($poly1, $poly2)->toString();
+echo "\n";
+echo Operation::calculateByX($poly1, 2);
+
+//var_dump($poly1);
