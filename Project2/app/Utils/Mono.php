@@ -69,8 +69,8 @@ class Mono
     public function multiplication(self $secondMono): self
     {
         return new Mono(
-            $this->getCoffecent() * $secondMono->getCoffecent(),
-            $this->getPower() + $secondMono->getPower()
+            $this->coffecent * $secondMono->getCoffecent(),
+            $this->power + $secondMono->getPower()
         );
     }
 }
