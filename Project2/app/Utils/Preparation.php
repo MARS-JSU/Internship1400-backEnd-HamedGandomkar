@@ -22,7 +22,11 @@ class Preparation
         $this->prepare();
         $this->insertRemovedChar();
         $this->packToMono();
-        return $this->arrayOfMonos ?? new \Exception("uninitiated instance!");
+        if(isset($this->arrayOfMonos)){
+            return $this->arrayOfMonos;
+        }else{
+            throw new \Exception("uninitilized instance!");
+        }
     }
 
     private function handleFirstChar()

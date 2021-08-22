@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Utils\Poly;
-
+use App\Utils\MonoOperation;
 
 class Operation
 {
@@ -25,7 +25,7 @@ class Operation
         foreach($secondPoly->getMonos() as &$bMono){
             $outputPoly->addMono($bMono);
         }
-        $outputPoly->categorize();
+        $outputPoly->cleanup();
         return $outputPoly;
     }
 
@@ -38,7 +38,7 @@ class Operation
         foreach($secondPoly->getMonos() as &$bMono){
             $outputPoly->addMono($bMono->negative());
         }
-        $outputPoly->categorize();
+        $outputPoly->cleanup();
         return $outputPoly;
     }
 

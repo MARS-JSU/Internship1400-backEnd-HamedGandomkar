@@ -17,7 +17,7 @@ echo Operation::addition($poly1, $poly2)->toString();
 echo "\n";
 echo Operation::subtraction($poly1, $poly2)->toString();
 echo "\n";
-echo Operation::multiplication($poly1, $poly2)->toString();
+echo Operation::multiplication($poly1, $poly2)->cleanup()->toString();
 echo "\n";
 echo Operation::calculateByX($poly1, 2);
 

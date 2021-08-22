@@ -16,7 +16,7 @@ class Mono
 
     public function __toString()
     {
-        if ($this->power != -1) {
+        if ($this->power > 0 || $this->coffecent != 0) {
             if ($this->power == 1) {
                 if ($this->coffecent > 0) {
                     return "+$this->coffecent" . "x";

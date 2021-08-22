@@ -11,13 +11,14 @@ class Poly
     public function __construct(array $expression = [])
     {
         $this->categorizedMonos = $expression;
-        $this->categorize();
+        $this->cleanup();
     }
 
-    public function categorize()
+    public function cleanup()
     {
         $this->simplify();
         $this->sortByPowers();
+        return $this;
     }
 
     public function setMonos(array $arrayOfMonos): self
@@ -73,7 +74,6 @@ class Poly
     public function toString(): string
     {
         $outputString = "";
-        $this->categorize();
         foreach($this->categorizedMonos as &$mono){
             $outputString .= $mono;
         }
