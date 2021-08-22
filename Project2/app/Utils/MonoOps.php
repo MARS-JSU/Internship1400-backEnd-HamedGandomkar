@@ -3,7 +3,7 @@ namespace App\Utils;
 
 use App\Utils\Mono;
 
-class MonoOperation{
+class MonoOps{
     public static function negative(Mono $mono): Mono
     {
         return new Mono(

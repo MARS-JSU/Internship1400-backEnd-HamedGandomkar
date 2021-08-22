@@ -49,28 +49,4 @@ class Mono
     {
         return $this->coffecent;
     }
-
-    public function negative(): self
-    {
-        return new Mono(
-            $this->coffecent * -1,
-            $this->power
-        );
-    }
-
-    public function derivative(): self
-    {
-        return new Mono(
-            $this->coffecent * $this->power,
-            $this->power - 1
-        );
-    }
-
-    public function multiplication(self $secondMono): self
-    {
-        return new Mono(
-            $this->coffecent * $secondMono->getCoffecent(),
-            $this->power + $secondMono->getPower()
-        );
-    }
 }

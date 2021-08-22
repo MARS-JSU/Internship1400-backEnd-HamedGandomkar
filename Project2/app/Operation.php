@@ -4,6 +4,7 @@ namespace App;
 
 use App\Utils\Poly;
 use App\Utils\MonoOperation;
+use App\Utils\MonoOps;
 
 class Operation
 {
@@ -36,7 +37,7 @@ class Operation
             $outputPoly->addMono($aMono);
         }
         foreach($secondPoly->getMonos() as &$bMono){
-            $outputPoly->addMono($bMono->negative());
+            $outputPoly->addMono(MonoOps::negative($bMono));
         }
         $outputPoly->cleanup();
         return $outputPoly;
@@ -47,7 +48,7 @@ class Operation
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
             foreach($secondPoly->getMonos() as &$bMono){
-                $outputPoly->addMono($aMono->multiplication($bMono));
+                $outputPoly->addMono(MonoOps::multiplication($aMono, $bMono));
             }
         }
         return $outputPoly;
@@ -57,7 +58,7 @@ class Operation
     {
         $outputPoly = new Poly();
         foreach($poly->getMonos() as $mono){
-            $outputPoly->addMono($mono->derivative());
+            $outputPoly->addMono(MonoOps::derivative($mono));
         }
         return $outputPoly;
     }
