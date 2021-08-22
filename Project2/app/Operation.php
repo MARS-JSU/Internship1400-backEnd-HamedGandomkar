@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Utils\Poly;
-use App\Utils\MonoOperation;
 use App\Utils\MonoOps;
 
 class Operation
