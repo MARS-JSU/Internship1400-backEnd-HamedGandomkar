@@ -5,8 +5,8 @@ namespace App\Utils;
 
 class Mono
 {
-    private $coffecent;
-    private $power;
+    private float $coffecent;
+    private int $power;
 
     public function __construct($coffecent, $power)
     {
