@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Utils;
+
+use App\Contracts\MonoInterface;
 use App\Contracts\PolyInterface;
 
 class Poly implements PolyInterface
@@ -80,7 +82,7 @@ class Poly implements PolyInterface
         return $outputString;
     }
 
-    public function addMono(Mono $mono)
+    public function addMono(MonoInterface $mono)
     {
         array_push($this->categorizedMonos, $mono);
     }
