@@ -2,8 +2,9 @@
 
 namespace App\Utils;
 use App\Contracts\MonoInterface;
+use App\Contracts\Stringable;
 
-class Mono implements MonoInterface
+class Mono implements MonoInterface, Stringable
 {
     private float $coffecent;
     private int $power;

@@ -4,8 +4,9 @@ namespace App\Utils;
 
 use App\Contracts\MonoInterface;
 use App\Contracts\PolyInterface;
+use App\Contracts\Stringable;
 
-class Poly implements PolyInterface
+class Poly implements PolyInterface, Stringable
 {
     private array $categorizedMonos;
     private array $arrayOfPowers;
