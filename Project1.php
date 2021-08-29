@@ -10,6 +10,7 @@ function calculation($expression){
 }
 
 echo calculation("2.3x-5.5x+10x");
+
 //Hamed Gandomkar
 //1400.05.05
 
