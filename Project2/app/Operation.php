@@ -3,11 +3,12 @@
 namespace App;
 
 use App\Utils\Poly;
+use App\Contracts\PolyInterface;
 use App\Utils\MonoOps;
 
 class Operation
 {
-    public static function calculateByX(Poly $poly, $xVariable): float
+    public static function calculateByX(PolyInterface $poly, $xVariable): float
     {
         $sum = 0;
         foreach ($poly->getMonos() as &$mono) {
@@ -16,7 +17,7 @@ class Operation
         return $sum;
     }
 
-    public static function addition(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function addition(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
@@ -29,7 +30,7 @@ class Operation
         return $outputPoly;
     }
 
-    public static function subtraction(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function subtraction(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
@@ -42,7 +43,7 @@ class Operation
         return $outputPoly;
     }
 
-    public static function multiplication(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function multiplication(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
@@ -53,7 +54,7 @@ class Operation
         return $outputPoly;
     }
 
-    public static function derivative(Poly $poly): Poly
+    public static function derivative(PolyInterface $poly): Poly
     {
         $outputPoly = new Poly();
         foreach($poly->getMonos() as $mono){
