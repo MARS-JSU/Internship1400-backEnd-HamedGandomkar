@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Utils;
+use App\Contracts\PolyInterface;
 
-
-class Poly
+class Poly implements PolyInterface
 {
     private array $categorizedMonos;
     private array $arrayOfPowers;
@@ -14,7 +14,7 @@ class Poly
         $this->cleanup();
     }
 
-    public function cleanup()
+    public function cleanup(): self
     {
         $this->simplify();
         $this->sortByPowers();
@@ -71,7 +71,7 @@ class Poly
         $this->categorizedMonos = $newCategorized;
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         $outputString = "";
         foreach($this->categorizedMonos as &$mono){

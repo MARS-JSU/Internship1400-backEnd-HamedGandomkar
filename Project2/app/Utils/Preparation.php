@@ -2,7 +2,9 @@
 
 namespace App\Utils;
 
-class Preparation
+use App\Contracts\PreparationInterface;
+
+class Preparation implements PreparationInterface
 {
     private string $wholeExpression;
     private array $arrayOfExpressions;

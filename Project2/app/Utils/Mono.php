@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Utils;
+use App\Contracts\MonoInterface;
 
-
-class Mono
+class Mono implements MonoInterface
 {
     private float $coffecent;
     private int $power;
