@@ -4,10 +4,10 @@ namespace App;
 
 use App\Utils\Poly;
 use App\Contracts\Types\PolyInterface;
-use App\Contracts\Ops\OpsInterface;
-use App\Utils\MonoOps;
+use App\Contracts\Operations\OperationsInterface;
+use App\Utils\MonoOperations;
 
-class Operation implements OpsInterface
+class Operation implements OperationsInterface
 {
     public static function calculateByX(PolyInterface $poly, $xVariable): float
     {
@@ -38,7 +38,7 @@ class Operation implements OpsInterface
             $outputPoly->addMono($aMono);
         }
         foreach($secondPoly->getMonos() as &$bMono){
-            $outputPoly->addMono(MonoOps::negative($bMono));
+            $outputPoly->addMono(MonoOperations::negative($bMono));
         }
         $outputPoly->cleanup();
         return $outputPoly;
@@ -49,7 +49,7 @@ class Operation implements OpsInterface
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
             foreach($secondPoly->getMonos() as &$bMono){
-                $outputPoly->addMono(MonoOps::multiplication($aMono, $bMono));
+                $outputPoly->addMono(MonoOperations::multiplication($aMono, $bMono));
             }
         }
         return $outputPoly;
@@ -59,7 +59,7 @@ class Operation implements OpsInterface
     {
         $outputPoly = new Poly();
         foreach($poly->getMonos() as $mono){
-            $outputPoly->addMono(MonoOps::derivative($mono));
+            $outputPoly->addMono(MonoOperations::derivative($mono));
         }
         return $outputPoly;
     }

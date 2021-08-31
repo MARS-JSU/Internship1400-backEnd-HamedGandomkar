@@ -2,11 +2,11 @@
 
 namespace App\Utils;
 
-use App\Contracts\Ops\MonoOpsInterface;
+use App\Contracts\Operations\MonoOperationsInterface;
 use App\Contracts\Types\MonoInterface;
 use App\Utils\Mono;
 
-class MonoOps implements MonoOpsInterface
+class MonoOperations implements MonoOperationsInterface
 {
     public static function negative(MonoInterface $mono): Mono
     {

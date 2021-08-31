@@ -1,9 +1,9 @@
 <?php
-namespace App\Contracts\Ops;
+namespace App\Contracts\Operations;
 use App\Contracts\Types\PolyInterface;
 use App\Utils\Poly;
 
-interface OpsInterface{
+interface OperationsInterface{
     public static function calculateByX(PolyInterface $poly, $xVariable): float;
     public static function addition(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly;
     public static function subtraction(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly;
