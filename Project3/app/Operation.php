@@ -3,10 +3,11 @@
 namespace App;
 
 use App\Utils\Poly;
-use App\Contracts\PolyInterface;
+use App\Contracts\Types\PolyInterface;
+use App\Contracts\Ops\OpsInterface;
 use App\Utils\MonoOps;
 
-class Operation
+class Operation implements OpsInterface
 {
     public static function calculateByX(PolyInterface $poly, $xVariable): float
     {
@@ -62,5 +63,4 @@ class Operation
         }
         return $outputPoly;
     }
-
 }
