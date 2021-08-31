@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Utils;
-use App\Contracts\MonoInterface;
-use App\Contracts\Stringable;
+use App\Contracts\Types\MonoInterface;
+use App\Contracts\Shared\Stringable;
 
 class Mono implements MonoInterface, Stringable
 {

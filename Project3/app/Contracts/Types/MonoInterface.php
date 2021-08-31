@@ -1,5 +1,5 @@
 <?php
-namespace App\Contracts;
+namespace App\Contracts\Types;
 
 interface MonoInterface{
     public function getPower(): int;

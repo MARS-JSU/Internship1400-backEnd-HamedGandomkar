@@ -2,9 +2,9 @@
 
 namespace App\Utils;
 
-use App\Contracts\MonoInterface;
-use App\Contracts\PolyInterface;
-use App\Contracts\Stringable;
+use App\Contracts\Types\MonoInterface;
+use App\Contracts\Types\PolyInterface;
+use App\Contracts\Shared\Stringable;
 
 class Poly implements PolyInterface, Stringable
 {

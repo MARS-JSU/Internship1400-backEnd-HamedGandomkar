@@ -1,9 +1,13 @@
 <?php
+
 namespace App\Utils;
-use App\Contracts\MonoInterface;
+
+use App\Contracts\Ops\MonoOpsInterface;
+use App\Contracts\Types\MonoInterface;
 use App\Utils\Mono;
 
-class MonoOps{
+class MonoOps implements MonoOpsInterface
+{
     public static function negative(MonoInterface $mono): Mono
     {
         return new Mono(

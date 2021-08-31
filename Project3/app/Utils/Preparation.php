@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-use App\Contracts\PreparationInterface;
+use App\Contracts\Types\PreparationInterface;
 
 class Preparation implements PreparationInterface
 {
