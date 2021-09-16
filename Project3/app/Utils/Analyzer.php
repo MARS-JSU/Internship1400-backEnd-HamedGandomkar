@@ -9,7 +9,6 @@ class Analyzer implements AnalyzerInterface
     private string $rawString;
     private array $strings;
     private array $arrayOfMonos;
-    private string $firstChar;
 
     public function __construct(string $expression)
     {
@@ -19,33 +18,12 @@ class Analyzer implements AnalyzerInterface
     public function init()
     {
         $this->makeCoefficientOne();
-        $this->handleFirstChar();
         $this->seperation();
         $this->analyzer();
-        $this->insertRemovedChar();
         $this->packToMono();
         return $this->arrayOfMonos;
     }
 
-    private function handleFirstChar()
-    {
-        if ($this->rawString[0] == '-') {
-            $this->firstChar = '-';
-            $this->rawString = ltrim($this->rawString, '-');
-        } elseif ($this->rawString[0] == '+') {
-            $this->firstChar = '+';
-            $this->rawString = ltrim($this->rawString, '+');
-        } else {
-            $this->firstChar = '+';
-        }
-    }
-
-    private function insertRemovedChar()
-    {
-        if (isset($this->firstChar)) {
-            $this->strings[0] = $this->firstChar . $this->strings[0];
-        }
-    }
 
     private function makeCoefficientOne()
     {
@@ -55,9 +33,12 @@ class Analyzer implements AnalyzerInterface
     private function seperation()
     {
         $temp = str_replace(['+', '-'], [' +', ' -'], $this->rawString);
+        if($temp[0] == ' '){
+            $temp = ltrim($temp, ' ');
+        }
         $this->strings = explode(' ', $temp);
     }
-
+    
     private function analyzer()
     {
         foreach ($this->strings as &$mono) {
