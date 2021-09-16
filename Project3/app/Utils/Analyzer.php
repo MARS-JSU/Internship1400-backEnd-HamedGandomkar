@@ -2,9 +2,9 @@
 
 namespace App\Utils;
 
-use App\Contracts\Types\AnalyzorInterface;
+use App\Contracts\Types\AnalyzerInterface;
 
-class Analyzor implements AnalyzorInterface
+class Analyzer implements AnalyzerInterface
 {
     private string $wholeExpression;
     private array $arrayOfExpressions;
@@ -21,7 +21,7 @@ class Analyzor implements AnalyzorInterface
         $this->makeCoefficientOne();
         $this->handleFirstChar();
         $this->seperation();
-        $this->analyzor();
+        $this->analyzer();
         $this->insertRemovedChar();
         $this->packToMono();
         if(isset($this->arrayOfMonos)){
@@ -62,7 +62,7 @@ class Analyzor implements AnalyzorInterface
         $this->arrayOfExpressions = explode(' ', $temp);
     }
 
-    private function analyzor()
+    private function analyzer()
     {
         foreach ($this->arrayOfExpressions as &$mono) {
             if (strpos($mono, 'x') === false) {
