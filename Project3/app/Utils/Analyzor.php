@@ -2,9 +2,9 @@
 
 namespace App\Utils;
 
-use App\Contracts\Types\PreparationInterface;
+use App\Contracts\Types\AnalyzorInterface;
 
-class Preparation implements PreparationInterface
+class Analyzor implements AnalyzorInterface
 {
     private string $wholeExpression;
     private array $arrayOfExpressions;
@@ -21,7 +21,7 @@ class Preparation implements PreparationInterface
         $this->makeCoefficientOne();
         $this->handleFirstChar();
         $this->seperation();
-        $this->prepare();
+        $this->analyzor();
         $this->insertRemovedChar();
         $this->packToMono();
         if(isset($this->arrayOfMonos)){
@@ -62,7 +62,7 @@ class Preparation implements PreparationInterface
         $this->arrayOfExpressions = explode(' ', $temp);
     }
 
-    private function prepare()
+    private function analyzor()
     {
         foreach ($this->arrayOfExpressions as &$mono) {
             if (strpos($mono, 'x') === false) {

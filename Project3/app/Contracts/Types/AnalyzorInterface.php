@@ -1,6 +1,6 @@
 <?php
 namespace App\Contracts\Types;
 
-interface PreparationInterface{
+interface AnalyzorInterface{
     public function init();
 }
