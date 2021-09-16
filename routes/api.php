@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OperationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('polyValidation')->group(function(){
+    Route::post("/derivative", [OperationController::class, "derivative"]);
+    Route::post("/sum", [OperationController::class, "sum"]);
+    Route::post("/sub", [OperationController::class, "sub"]);
+    Route::post("/multiply", [OperationController::class, "multiply"]);
+    Route::post("/calculate", [OperationController::class, "calculate"]);
 });
