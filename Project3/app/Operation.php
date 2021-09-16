@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Utils\Poly;
-use App\Utils\MonoOps;
+use App\Contracts\Types\PolyInterface;
+use App\Contracts\Operations\OperationsInterface;
+use App\Utils\MonoOperations;
 
-class Operation
+class Operation implements OperationsInterface
 {
-    public static function calculateByX(Poly $poly, $xVariable): float
+    public static function calculateByX(PolyInterface $poly, $xVariable): float
     {
         $sum = 0;
         foreach ($poly->getMonos() as &$mono) {
@@ -16,7 +18,7 @@ class Operation
         return $sum;
     }
 
-    public static function addition(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function addition(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
@@ -29,37 +31,36 @@ class Operation
         return $outputPoly;
     }
 
-    public static function subtraction(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function subtraction(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
             $outputPoly->addMono($aMono);
         }
         foreach($secondPoly->getMonos() as &$bMono){
-            $outputPoly->addMono(MonoOps::negative($bMono));
+            $outputPoly->addMono(MonoOperations::negative($bMono));
         }
         $outputPoly->cleanup();
         return $outputPoly;
     }
 
-    public static function multiplication(Poly $firstPoly, Poly $secondPoly): Poly
+    public static function multiplication(PolyInterface $firstPoly, PolyInterface $secondPoly): Poly
     {
         $outputPoly = new Poly();
         foreach($firstPoly->getMonos() as &$aMono){
             foreach($secondPoly->getMonos() as &$bMono){
-                $outputPoly->addMono(MonoOps::multiplication($aMono, $bMono));
+                $outputPoly->addMono(MonoOperations::multiplication($aMono, $bMono));
             }
         }
         return $outputPoly;
     }
 
-    public static function derivative(Poly $poly): Poly
+    public static function derivative(PolyInterface $poly): Poly
     {
         $outputPoly = new Poly();
         foreach($poly->getMonos() as $mono){
-            $outputPoly->addMono(MonoOps::derivative($mono));
+            $outputPoly->addMono(MonoOperations::derivative($mono));
         }
         return $outputPoly;
     }
-
 }

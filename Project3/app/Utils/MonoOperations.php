@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Utils;
 
+use App\Contracts\Operations\MonoOperationsInterface;
+use App\Contracts\Types\MonoInterface;
 use App\Utils\Mono;
 
-class MonoOps{
-    public static function negative(Mono $mono): Mono
+class MonoOperations implements MonoOperationsInterface
+{
+    public static function negative(MonoInterface $mono): Mono
     {
         return new Mono(
             $mono->getCoffecent() * -1,
@@ -12,7 +16,7 @@ class MonoOps{
         );
     }
 
-    public static function derivative(Mono $mono): Mono
+    public static function derivative(MonoInterface $mono): Mono
     {
         return new Mono(
             $mono->getCoffecent() * $mono->getPower(),
@@ -20,7 +24,7 @@ class MonoOps{
         );
     }
 
-    public static function multiplication(Mono $firstMono, Mono $secondMono): Mono
+    public static function multiplication(MonoInterface $firstMono, MonoInterface $secondMono): Mono
     {
         return new Mono(
             $firstMono->getCoffecent() * $secondMono->getCoffecent(),

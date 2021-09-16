@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Utils;
+use App\Contracts\Types\MonoInterface;
+use App\Contracts\Shared\Stringable;
 
-
-class Mono
+class Mono implements MonoInterface, Stringable
 {
     private float $coffecent;
     private int $power;

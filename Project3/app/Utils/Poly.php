@@ -2,8 +2,11 @@
 
 namespace App\Utils;
 
+use App\Contracts\Types\MonoInterface;
+use App\Contracts\Types\PolyInterface;
+use App\Contracts\Shared\Stringable;
 
-class Poly
+class Poly implements PolyInterface, Stringable
 {
     private array $categorizedMonos;
     private array $arrayOfPowers;
@@ -11,10 +14,10 @@ class Poly
     public function __construct(array $expression = [])
     {
         $this->categorizedMonos = $expression;
-        $this->cleanup();
+        //$this->cleanup();
     }
 
-    public function cleanup()
+    public function cleanup(): self
     {
         $this->simplify();
         $this->sortByPowers();
@@ -71,7 +74,7 @@ class Poly
         $this->categorizedMonos = $newCategorized;
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         $outputString = "";
         foreach($this->categorizedMonos as &$mono){
@@ -80,7 +83,7 @@ class Poly
         return $outputString;
     }
 
-    public function addMono(Mono $mono)
+    public function addMono(MonoInterface $mono)
     {
         array_push($this->categorizedMonos, $mono);
     }
