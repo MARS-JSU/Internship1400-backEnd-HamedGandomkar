@@ -14,7 +14,7 @@ class Poly implements PolyInterface, Stringable
     public function __construct(array $expression = [])
     {
         $this->categorizedMonos = $expression;
-        $this->cleanup();
+        //$this->cleanup();
     }
 
     public function cleanup(): self
